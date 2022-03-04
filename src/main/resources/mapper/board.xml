@@ -5,18 +5,18 @@
 <mapper namespace="jjfactory.mybatis.repository.BoardRepository">
 
     <insert id="save">
-        INSERT INTO board(title, content, userId, createDate)
-        VALUES(#{title}, #{content}, #{userId}, now())
+        INSERT INTO board(title, content, user_id, createDate)
+        VALUES(#{title}, #{content}, #{user_id}, now())
     </insert>
 
     <select id="findAll" resultType="jjfactory.mybatis.model.Board">
-        SELECT * FROM post ORDER BY id DESC
+        SELECT * FROM board ORDER BY id DESC
     </select>
 
-    <select id="findById" resultType="jjfactory.mybatis.controller.dto.PostDetailResDto">
+    <select id="findById" resultType="jjfactory.mybatis.dto.PostDetailResDto">
         SELECT b.id, b.title, b.content, b.username
         FROM board b INNER JOIN user u
-                               ON b.userId = u.id
+                               ON b.user_id = u.id
         WHERE b.id = #{id}
     </select>
 

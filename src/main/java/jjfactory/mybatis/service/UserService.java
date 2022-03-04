@@ -10,13 +10,15 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 @Service
 public class UserService {
+
     private final UserRepository userRepository;
 
-    public void signUp(){
-
+    public void signUp(User user){
+        userRepository.save(user);
     }
 
-    public User signIn(){
+    @Transactional(readOnly = true)
+    public User signIn(User user){
         return null;
     }
 }
