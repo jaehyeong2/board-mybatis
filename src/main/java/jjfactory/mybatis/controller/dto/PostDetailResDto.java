@@ -1,2 +1,4 @@
-package jjfactory.mybatis.controller.dto;public class PostDetailResDto {
+package jjfactory.mybatis.controller.dto;
+
+public class PostDetailResDto {
 }

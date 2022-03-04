@@ -19,18 +19,18 @@ import javax.sql.DataSource;
 public class DatabaseConfig {
 
     @Bean
-    public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception{
-        SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
+    public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
 
-        sqlSessionFactoryBean.setDataSource(dataSource);
-        sqlSessionFactoryBean.setMapperLocations(
-                new PathMatchingResourcePatternResolver().getResource("classpath:mapper/*.xml")
-        );
-        return sqlSessionFactoryBean.getObject();
+        SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
+
+        sessionFactory.setDataSource(dataSource);
+        sessionFactory.setMapperLocations(
+                new PathMatchingResourcePatternResolver().getResources("classpath:mapper/*.xml"));
+        return sessionFactory.getObject();
     }
 
     @Bean
-    public SqlSessionTemplate sqlSessionTemplate(SqlSessionFactory sqlSessionFactory){
+    public SqlSessionTemplate sqlSessionTemplate(SqlSessionFactory sqlSessionFactory) {
         return new SqlSessionTemplate(sqlSessionFactory);
     }
 }
